@@ -1,0 +1,7 @@
+write up
+//sneha sinha, 2016098
+The input command is read using fgets in an infinite while loop, it's parsed then using string function strtok. If the command
+matches "exit", the while loop breaks. The newline character is removed. The null chracter is appended at the end of the array
+formed. After that if fork() is 0, execvp() is run with the parameters as the file pointer and the command. Else the while loop does wait().
+Internal commands-
+history-strdup() creates a copy of the given parameter and returns pointer to the copy.
