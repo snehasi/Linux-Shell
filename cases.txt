@@ -1,0 +1,18 @@
+make
+./shell
+ls
+cd
+pwd
+cd Desktop
+pwd
+cd 2016098
+pwd
+mkdir f
+ls
+rm f
+ls
+date
+cat writeup.txt
+echo testing
+history
+exit

@@ -138,6 +138,25 @@ int main(int argc, char **argv) {
         }
 
 
+        if(strcmp(command,"mkdir")==0){
+          char *p[3];
+          p[0]="/Users/snehasi/Desktop/2016098/mkdir";
+          p[1]=argv[1];
+          p[2]=NULL;
+          execv(p[0], p);
+
+        }
+
+        if(strcmp(command,"rm")==0){
+          char *p[3];
+          p[0]="/Users/snehasi/Desktop/2016098/rm";
+          p[1]=argv[1];
+          p[2]=NULL;
+          execv(p[0], p);
+
+        }
+
+
 
         // execvp(command,argv);
         // printf("Command not found \n");

@@ -15,7 +15,7 @@ int main(int argc, char **argv){
   //int st = strcmp("writeup.txt",ff);
   //printf("%d",st);
   FILE *file = fopen(ff,"r");
-  char *tok;
+  char tok;
   if(file!=NULL){
     tok = fgetc(file);
     while (tok != EOF)
@@ -23,12 +23,10 @@ int main(int argc, char **argv){
         printf ("%c", tok);
         tok = fgetc(file);
     }
-
-
     //printf("%s",c);
   }
   else{
-    printf("%s","File is not present in the directory.");
+    printf("%s","Directory does not contain the file.");
   }
   fclose(file);
 
