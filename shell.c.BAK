@@ -21,8 +21,6 @@ int main(int argc, char **argv) {
     if(fgets(command,sizeof(command),stdin)==NULL){
       break;
     }
-
-    //printf("%s\n", command);
   ///∗ parse command −− exit if quit ∗/ ...
   //removed newline character
   //parsing
@@ -103,8 +101,8 @@ int main(int argc, char **argv) {
         //printf("xxx");
         //printf(command);
         if(strcmp(command,"cat")==0){
-          //printf("%s\n",argv[1]);
-          //printf("%s\n","testing");
+          printf("%s\n",argv[1]);
+          printf("%s\n","testing");
           char *p[3];
           p[0]="./cat";
           p[1]=argv[1];
@@ -117,8 +115,7 @@ int main(int argc, char **argv) {
           char f[3000];
           char *xx=getcwd(f, sizeof(f));
           //char *xx=getenv("PWD");
-          //printf("%s\n\n","ggggg");
-          // system("pause");
+          printf("%s","ggggg");
           //printf("%s\n",xx);
           //char *const p = {"./ls",xx,NULL};
           char *p[3];
