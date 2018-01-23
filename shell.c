@@ -128,6 +128,15 @@ int main(int argc, char **argv) {
           execv(p[0], p);
         }
 
+        if(strcmp(command,"date")==0){
+          char *p[3];
+          p[0]="/Users/snehasi/Desktop/2016098/date";
+          p[1]=".";
+          p[2]=NULL;
+          execv(p[0], p);
+
+        }
+
 
 
         // execvp(command,argv);
