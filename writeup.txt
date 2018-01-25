@@ -1,7 +1,24 @@
-write up
 //sneha sinha, 2016098
-The input command is read using fgets in an infinite while loop, it's parsed then using string function strtok. If the command
-matches "exit", the while loop breaks. The newline character is removed. The null chracter is appended at the end of the array
-formed. After that if fork() is 0, execvp() is run with the parameters as the file pointer and the command. Else the while loop does wait().
-Internal commands-
-history-strdup() creates a copy of the given parameter and returns pointer to the copy.
+The input command is read using fgets in a while loop.
+Internal commands implemented - cd goes to the root
+                                cd <directoryname> changes the current dir to the one given
+                              - pwd outputs the path of the current directory
+                              - echo string prints the given string to the std output i.e. the console
+                              - exit breaks the while loop and exits
+                              - history -maintains an array of previous commands in the shell
+External commands implemented - date
+                              - ls prints the content of the current dir
+                                ls -A excludes the . and .. directories.
+                                ls -a includes the . and .. directories.
+                              - cat filename prints the content of the file to the std output
+                                cat-n prints number of the output lines in the file starting at 1
+                              - mkdir dirname makes a directory with the given filename in the PWD with executable permissions
+                              - rm -d dir/file name removes the given directory or path
+                                   -v prints the file name while removing it 
+
+Errors handled- if user enters invalid command in shell, displayed error message.
+mkdir-If the user does not give name of a directory, error displayed.
+cat - If user doesn't enter filename , error displayed. If the entered value, doesn't match a filename, error displayed.
+ls - Error displayed if the current working directory can not be opened or user enters invalid option.
+Corner case: Only history gets printed if invoked as the first command in shell.
+rm -d - If filename or dirname not specified, error displayed.

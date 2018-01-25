@@ -2,33 +2,67 @@
 #include <stdio.h>
 #include <stdlib.h>
 int main(int argc, char **argv){
-  //printf("%s\n","hey");
-  //printf("%s\n", argv[1]);
-  //SetHomeDirectory();
   char gg[3000];
   char *xx=getcwd(gg, sizeof(gg));
   chdir(xx);
-  // int st = strcmp("writeup.txt",argv[1]);
-  // printf("%d",st);
-  char *ff =argv[1];
-  ff[strlen(ff)-1]='\0';
-  //int st = strcmp("writeup.txt",ff);
-  //printf("%d",st);
-  FILE *file = fopen(ff,"r");
-  char tok;
-  if(file!=NULL){
-    tok = fgetc(file);
-    while (tok != EOF)
-    {
-        printf ("%c", tok);
-        tok = fgetc(file);
+  char *option=argv[1]; //option
+  char *ff =argv[2]; //filename
+  if(option!=NULL){
+
+    if(ff!=NULL){
+      if(strcmp(option,"-n")==0){
+        //printf("%s\n","dabloo");
+        ff[strlen(ff)-1]='\0';
+        FILE *file = fopen(ff,"r");
+        char tok;
+        int i=1;
+        if(file!=NULL){
+          tok = fgetc(file);
+          printf("%d",i);
+          //i++;
+          while (tok != EOF)
+          {
+              printf ("%c", tok);
+              if(tok=='\n'){
+                i++;
+                printf("%d",i);
+
+              }
+              tok = fgetc(file);
+          }
+          //printf("%s",c);
+        }
+        else{
+          printf("%s","Present directory does not contain the specified file.");
+        }
+        fclose(file);
+      }
     }
-    //printf("%s",c);
+    else{  //only filename given
+      option[strlen(option)-1]='\0';
+      FILE *file = fopen(option,"r");
+      char tok;
+      if(file!=NULL){
+        tok = fgetc(file);
+        while (tok != EOF)
+        {
+            printf ("%c", tok);
+            tok = fgetc(file);
+        }
+        //printf("%s",c);
+      }
+      else{
+        printf("%s","Present directory does not contain the specified file.");
+      }
+      fclose(file);
+
+    }
+
   }
-  else{
-    printf("%s","Directory does not contain the file.");
+  else{  //no second argument, no option , no filename
+    printf("%s","File name not specified");
   }
-  fclose(file);
+
 
   return 1;
 }

@@ -84,20 +84,46 @@ int main(int argc, char **argv) {
 
     if(strcmp(command,"echo")==0){
       char *stringg = argv[1];
-      printf("%s\n",stringg);
-      //printf(sizeof(argv));
-      //printf(argv[1]);
+
+      if(strcmp(argv[1],"-n")==0){
+        int i=2;
+        while(argv[i]!=NULL && argv[i]!='\n'){
+          if(i==2){
+            printf("%s",argv[i]);
+          }
+          else{
+            printf("%s"," ");
+            printf("%s",argv[i]);
+          }
+          i++;
+        }
+      }
+      else{
+        int i=1;
+        while(argv[i]!=NULL){
+          if(i==1){
+            printf("%s",argv[i]);
+          }
+          else{
+            printf("%s"," ");
+            printf("%s",argv[i]);
+          }
+          i++;
+        }
+      }
     }
     //printf(command);
+
+
     if(strcmp(command,"history")==0){
       //printf("hey");
       printhistory(history,count);
     }
-    int pid=fork();
+    int id=fork();
     //fork();
     //printf(pid);
 
-    if (pid == 0) {
+    if (id == 0) {
   ///∗ this is the child ∗/ ...
   ///∗ use exec to run the command ∗/ ...
         //printf("xxx");
@@ -105,10 +131,11 @@ int main(int argc, char **argv) {
         if(strcmp(command,"cat")==0){
           //printf("%s\n",argv[1]);
           //printf("%s\n","testing");
-          char *p[3];
-          p[0]="./cat";
-          p[1]=argv[1];
-          p[2]=NULL;
+          char *p[4];
+          p[0]="/Users/snehasi/Desktop/2016098/src/cat";
+          p[1]=argv[1]; //option
+          p[2]=argv[2]; //filename
+          p[3]=NULL;
           execv(p[0], p);
         }
 
@@ -121,16 +148,17 @@ int main(int argc, char **argv) {
           // system("pause");
           //printf("%s\n",xx);
           //char *const p = {"./ls",xx,NULL};
-          char *p[3];
-          p[0]="/Users/snehasi/Desktop/2016098/ls";
+          char *p[4];
+          p[0]="/Users/snehasi/Desktop/2016098/src/ls";
           p[1]=xx;
-          p[2]=NULL;
+          p[2]=argv[1];
+          p[3]=NULL;
           execv(p[0], p);
         }
 
         if(strcmp(command,"date")==0){
           char *p[3];
-          p[0]="/Users/snehasi/Desktop/2016098/date";
+          p[0]="/Users/snehasi/Desktop/2016098/src/date";
           p[1]=".";
           p[2]=NULL;
           execv(p[0], p);
@@ -140,18 +168,26 @@ int main(int argc, char **argv) {
 
         if(strcmp(command,"mkdir")==0){
           char *p[3];
-          p[0]="/Users/snehasi/Desktop/2016098/mkdir";
-          p[1]=argv[1];
+          p[0]="/Users/snehasi/Desktop/2016098/src/mkdir";
+
+          if(argv[1]!=NULL){
+              p[1]=argv[1];
+          }
+          else{
+            p[1]="";
+          }
+          //printf("%s\n",argv[1]);
           p[2]=NULL;
           execv(p[0], p);
 
         }
 
         if(strcmp(command,"rm")==0){
-          char *p[3];
-          p[0]="/Users/snehasi/Desktop/2016098/rm";
-          p[1]=argv[1];
-          p[2]=NULL;
+          char *p[4];
+          p[0]="/Users/snehasi/Desktop/2016098/src/rm";
+          p[1]=argv[1]; //command
+          p[2]=argv[2]; //option
+          p[3]=argv[3]; //filename
           execv(p[0], p);
 
         }
@@ -159,7 +195,11 @@ int main(int argc, char **argv) {
 
 
         // execvp(command,argv);
-        // printf("Command not found \n");
+        if(strcmp(command,"pwd")!=0 && strcmp(command,"echo")!=0  && strcmp(command,"history")!=0){
+          printf("ERROR: Command not found in shell. \n");
+
+        }
+
         exit(0);
 
   ///∗ exit child ∗/

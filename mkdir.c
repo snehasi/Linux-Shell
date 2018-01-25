@@ -8,14 +8,18 @@
 
 int main(int argc, const char *argv[]){
     char *xx=argv[1];
-    //printf("%s",xx);
-    //int x=strcmp(xx,"test");
+    //printf("%s\n","hi");
+    //int x=strcmp(argv[1],NULL);
     xx[strlen(xx)-1]='\0';
     //printf("%d\n",x);
     mode_t mod = 0777;
-    if (mkdir(xx,mod) == -1) {
-        perror(argv[0]);
+    int mk = mkdir(xx,mod);
+    if (mk == -1) {
+        printf("%s\n","ERROR: Name of directory not specified.");
         exit(0);
+    }
+    else{
+      exit(0);
     }
     return 0;
 }
