@@ -1,0 +1,41 @@
+//SNEHA SINHA, 2016098
+//test case 1
+make all
+./shell
+ls
+cd
+pwd
+cd Desktop
+pwd
+cd 2016098
+pwd
+mkdir f
+ls
+rm -d f
+ls
+date
+cat writeup.txt
+cat -n writeup.txt
+cat testingerror.txt
+echo testing
+echo testing my shell
+ls
+ls -a
+ls -A
+history
+exit
+make clean
+
+
+//test case2
+make all
+./shell
+cd
+testing
+cd Desktop
+mkdir -v f
+mkdir d
+rm -v d
+rm -d f
+exit
+make clean
